@@ -1,0 +1,42 @@
+<div class="container-fluid content" *ngIf="canAccessTransactionProcessing">
+  <div class="card section-title no-border">
+    <div class="card-header bg-transparent no-border p-0">
+      <h1>Transaction Processing Report</h1>
+    </div>
+    <div class="form d-md-inline-flex p-0">
+      <!-- transaction type -->
+      <app-transaction-type
+        (transactionTypeChange)="transactionTypeChangeHandler($event)"
+      ></app-transaction-type>
+      <!-- date range elements -->
+      <app-date-range
+        (dateRangeChange)="dateRangeChangeHandler($event)"
+        [summaryParams]="summaryParams"
+      ></app-date-range>
+      <button
+        type="submit"
+        id="submit"
+        class="btn btn-primary mt-auto apply-button"
+        (click)="applyChanges()"
+        aria-label="Apply"
+        role="button"
+      >
+        APPLY
+      </button>
+    </div>
+    <!-- summary view -->
+    <app-transaction-processing-summary
+      [fanData]="fanData"
+      [summaryParams]="summaryParams"
+      [summaryHeaderTotals]="summaryHeaderTotals"
+      (showDetail)="changeDetailView($event)"
+    ></app-transaction-processing-summary>
+    <!-- detail view -->
+    <app-transaction-processing-detail
+      [transactionProcessingDetails]="summaryHeaderTotals"
+      [summaryParams]="summaryParams"
+      [fanData]="fanData"
+      [detailView]="detailView"
+    ></app-transaction-processing-detail>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="content">
+  <div class="form card no-border">
+    <div class="bg-transparent section-title pl-3 no-border">
+      <h1>Reports</h1>
+    </div>
+    <div class="d-md-inline-flex pl-3">
+      <!-- transaction type -->
+      <app-transaction-type
+        (transactionTypeChange)="transactionTypeChangeHandler($event)"
+      ></app-transaction-type>
+      <!-- date range elements -->
+      <app-date-range
+        (dateRangeChange)="dateRangeChangeHandler($event)"
+        [summaryParams]="summaryParams"
+      ></app-date-range>
+      <button
+        type="submit"
+        id="submit"
+        class="btn btn-primary mt-auto apply-button"
+        (click)="applyChanges()"
+        aria-label="Apply"
+        role="button"
+      >
+        APPLY
+      </button>
+    </div>
+    <div class="background">
+      <div class="cards report-card">
+        <!-- Case Status By Amount -->
+        <div class="card">
+          <app-bar-chart
+            [data]="caseStatusByAmountData"
+            [labels]="labels.CaseStatusByAmount"
+          ></app-bar-chart>
+        </div>
+        <!-- Case Status By Number of Cases -->
+        <div class="card">
+          <app-bar-chart
+            [data]="caseStatusByNumberData"
+            [labels]="labels.CaseStatusByNumber"
+          ></app-bar-chart>
+        </div>
+        <!-- Closed Cases By Amount -->
+        <div class="card">
+          <app-bar-chart
+            [data]="closedCasesByAmountData"
+            [labels]="labels.ClosedCasesByAmount"
+          ></app-bar-chart>
+        </div>
+        <!-- Closed Cases By Number of Cases -->
+        <div class="card">
+          <app-bar-chart
+            [data]="closedCasesByNumberData"
+            [labels]="labels.ClosedCasesByNumber"
+          ></app-bar-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
